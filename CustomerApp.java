@@ -1,5 +1,3 @@
-package lab4_5;
-
 import java.awt.BorderLayout;
 
 import java.awt.Dimension;
