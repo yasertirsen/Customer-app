@@ -1,5 +1,3 @@
-package lab4_5;
-
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
