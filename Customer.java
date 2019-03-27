@@ -1,5 +1,3 @@
-package lab4_5;
-
 import java.io.Serializable;
 
 public class Customer implements Serializable {
