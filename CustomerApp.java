@@ -169,15 +169,18 @@ public class CustomerApp extends JFrame implements ActionListener{
 				try{
 					name = nameField.getText();
 					age = Integer.parseInt(ageField.getText());
-					//if(emailField.getText().matches("^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$"))
 					email = emailField.getText();
-					tm.fireTableDataChanged();
-					customer = new Customer(name, age, email);
-					customers.add(customer);
-					nameField.setText("");
-					ageField.setText("");
-					emailField.setText("");
-					tm.fireTableDataChanged();
+					if(email.matches("^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$")) {
+						tm.fireTableDataChanged();
+						customer = new Customer(name, age, email);
+						customers.add(customer);
+						nameField.setText("");
+						ageField.setText("");
+						emailField.setText("");
+						tm.fireTableDataChanged();
+					}
+					else 
+						JOptionPane.showMessageDialog(this, "Email format is incorrect");
 					}
 					catch(NumberFormatException error){
 						JOptionPane.showMessageDialog(CustomerApp.this, "Age must be a number");
@@ -186,15 +189,14 @@ public class CustomerApp extends JFrame implements ActionListener{
 		}
 		
 		if(e.getSource() == deleteButton){
-				String r = null;
 				int row = tbl.getSelectedRow();
 				if(row == -1)
-					r = JOptionPane.showInputDialog(this, "Please input row to be deleted");
-				
-				row = Integer.parseInt(r);
-				System.out.println(row);
-				customers.remove(row);
-				tm.fireTableRowsDeleted(customers.size(), customers.size());
+					JOptionPane.showMessageDialog(this, "Please select row to be deleted");
+				else {
+					System.out.println(row);
+					customers.remove(row);
+					tm.fireTableRowsDeleted(customers.size(), customers.size());
+					}
 		}
 		
 		if(e.getSource() == fileSave){
